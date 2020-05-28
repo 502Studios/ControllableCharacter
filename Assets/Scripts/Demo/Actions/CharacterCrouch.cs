@@ -16,13 +16,18 @@ namespace net.fiveotwo.controllableCharacter
         private Controller2D characterController2D;
         protected ControllerInputModule input;
 
-        private void Start()
+        public override void Awake()
         {
-            input = controllableCharacter.InputModule();
+            base.Awake();
             boxCollider2D = GetComponent<BoxCollider2D>();
             characterController2D = GetComponent<Controller2D>();
             defaultSize = boxCollider2D.size;
             defaultOffset = boxCollider2D.offset;
+        }
+
+        public override void Initialization()
+        {
+            input = controllableCharacter.InputModule();
         }
 
         public override void UpdateAction()

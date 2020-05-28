@@ -15,7 +15,7 @@
         protected float smoothedMovementFactor;
         protected ControllerInputModule input;
 
-        private void Start()
+        public override void Initialization()
         {
             input = controllableCharacter.InputModule();
         }

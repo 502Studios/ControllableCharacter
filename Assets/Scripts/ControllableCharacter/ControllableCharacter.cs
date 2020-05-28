@@ -21,6 +21,11 @@
             characterStateMachine = new CharacterStateMachine();
         }
 
+        private void Start()
+        {
+            InitializeStates();
+        }
+
         void Update()
         {
             foreach (CharacterAction action in characterActions)
@@ -36,6 +41,14 @@
                 action.LateUpdateAction();
             }
             Move(velocity);
+        }
+
+        public void InitializeStates()
+        {
+            foreach (CharacterAction action in characterActions)
+            {
+                action.Initialization();
+            }
         }
 
         public bool IsGrounded()

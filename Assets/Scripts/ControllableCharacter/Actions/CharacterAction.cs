@@ -17,10 +17,6 @@
             controllableCharacter.AddAction(this);
         }
 
-        public virtual void HandleInput()
-        {
-        }
-
         public virtual void Initialization()
         {
         }
