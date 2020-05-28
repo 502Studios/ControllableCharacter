@@ -3,9 +3,9 @@
     private int currentState;
     private int previousState;
 
-    public CharacterStateMachine(int state)
+    public CharacterStateMachine()
     {
-        currentState = previousState = state;
+        currentState = previousState = 0;
     }
 
     public void SetState(int state)

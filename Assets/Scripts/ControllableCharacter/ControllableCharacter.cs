@@ -18,7 +18,7 @@
         public void Awake()
         {
             characterController2D = GetComponent<Controller2D>();
-            characterStateMachine = new CharacterStateMachine((int)CharacterState.idle);
+            characterStateMachine = new CharacterStateMachine();
         }
 
         void Update()
