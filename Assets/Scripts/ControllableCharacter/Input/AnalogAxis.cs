@@ -1,19 +1,13 @@
 ﻿namespace net.fiveotwo.controllableCharacter
 {
-    using System;
-
     public class AnalogAxis
     {
-        private readonly Func<float> axis;
-
-        public AnalogAxis(Func<float> axis)
-        {
-            this.axis = axis;
-        }
+        public delegate float Axis();
+        public Axis onAxisChange;
 
         public float Value()
         {
-            return axis != null ? axis() : 0;
+            return onAxisChange != null ? onAxisChange() : 0;
         }
     }
 }

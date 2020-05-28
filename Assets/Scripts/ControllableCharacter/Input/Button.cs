@@ -1,33 +1,25 @@
 ﻿namespace net.fiveotwo.controllableCharacter
 {
-    using System;
-
     public class Button
     {
-        private readonly Func<bool> buttonPressed;
-        private readonly Func<bool> buttonDown;
-        private readonly Func<bool> buttonUp;
-
-        public Button(Func<bool> buttonDown, Func<bool> buttonPressed, Func<bool> buttonUp)
-        {
-            this.buttonDown = buttonDown;
-            this.buttonPressed = buttonPressed;
-            this.buttonUp = buttonUp;
-        }
+        public delegate bool ButtonEvent();
+        public ButtonEvent onButtonDown;
+        public ButtonEvent onButtonPress;
+        public ButtonEvent onButtonUp;
 
         public bool WasPressed()
         {
-            return buttonDown != null ? buttonDown() : false;
+            return onButtonDown()? onButtonDown.Invoke() : false;
         }
 
         public bool WasReleased()
         {
-            return buttonUp != null ? buttonUp() : false;
+            return onButtonUp() ? onButtonUp.Invoke() : false;
         }
 
         public bool IsPressed()
         {
-            return buttonPressed != null ? buttonPressed() : false;
+            return onButtonPress() ? onButtonPress.Invoke() : false;
         }
     }
 }
