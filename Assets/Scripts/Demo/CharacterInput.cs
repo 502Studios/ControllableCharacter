@@ -7,12 +7,45 @@ namespace net.fiveotwo.controllableCharacter
     {
         private void Start()
         {
-            AnalogAxis horizontal = new AnalogAxis(() => Input.GetAxis("Horizontal"));
-            AnalogAxis vertical = new AnalogAxis(() => Input.GetAxis("Vertical"));
+            AnalogAxis horizontal = new AnalogAxis();
+            horizontal.onAxisChange += HorizontalAxis;
+            AnalogAxis vertical = new AnalogAxis();
+            vertical.onAxisChange += VerticalAxis;
             leftStick = new AnalogAxis2D(horizontal, vertical);
 
-            action1 = new Button(() => Input.GetKeyDown(KeyCode.J), () => Input.GetKey(KeyCode.J), () => Input.GetKeyUp(KeyCode.J));
-            action2 = new Button(() => Input.GetKeyDown(KeyCode.K), () => Input.GetKey(KeyCode.K), () => Input.GetKeyUp(KeyCode.K));
+            action1 = new Button();
+            action1.onButtonDown += OnButtonDown;
+            action1.onButtonUp += OnButtonUp;
+            action1.onButtonPress += OnButtonPressed;
+
+            action2 = new Button();
+            action2.onButtonDown += () => Input.GetKeyDown(KeyCode.K);
+            action2.onButtonUp += () => Input.GetKeyUp(KeyCode.K);
+            action2.onButtonPress += () => Input.GetKey(KeyCode.K);
+        }
+
+        private bool OnButtonDown() {
+            return Input.GetKeyDown(KeyCode.J);
+        }
+
+        private bool OnButtonUp()
+        {
+            return Input.GetKeyUp(KeyCode.J);
+        }
+
+        private bool OnButtonPressed()
+        {
+            return Input.GetKey(KeyCode.J);
+        }
+
+        private float HorizontalAxis()
+        {
+            return Input.GetAxis("Horizontal");
+        }
+
+        private float VerticalAxis()
+        {
+            return Input.GetAxis("Vertical");
         }
     }
 }
