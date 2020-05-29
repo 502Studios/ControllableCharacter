@@ -25,7 +25,7 @@
             characterJump = GetComponent<CharacterJump>();
         }
 
-        private void Start()
+        public override void Initialization()
         {
             input = controllableCharacter.InputModule();
             currentFuel = fuel;

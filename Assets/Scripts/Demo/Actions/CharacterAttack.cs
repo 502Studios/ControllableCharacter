@@ -13,7 +13,7 @@ namespace net.fiveotwo.controllableCharacter
             characterAim = GetComponent<CharacterAim>();
         }
 
-        private void Start()
+        public override void Initialization()
         {
             input = controllableCharacter.InputModule();
         }

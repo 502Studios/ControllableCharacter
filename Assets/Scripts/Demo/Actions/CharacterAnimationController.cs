@@ -7,8 +7,9 @@ public class CharacterAnimationController : CharacterAction
     private SpriteRenderer spriteRenderer;
     private CharacterAim characterAim;
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         characterAim = GetComponent<CharacterAim>();

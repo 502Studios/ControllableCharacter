@@ -70,7 +70,7 @@
             Right
         }
 
-        private void Start()
+        public override void Initialization()
         {
             input = controllableCharacter.InputModule();
             currentAimingDirection = previousDirection = defaultDirection == Direction.Left ? Vector2.left : Vector2.right;

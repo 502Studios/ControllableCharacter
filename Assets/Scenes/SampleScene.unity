@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 1470407636}
   - component: {fileID: 1470407635}
   - component: {fileID: 1470407639}
+  - component: {fileID: 1470407640}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -410,8 +411,27 @@ MonoBehaviour:
   active: 1
   gravity: 60
   coyoteTime: 5
-  maxJumps: 3
+  maxJumps: 1
   jumpHeight: 2
+--- !u!114 &1470407640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470407630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec75ea2267aab034bb8483368e9db38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  active: 1
+  fuel: 10
+  fuelDepletionRate: 1
+  fuelRefillRate: 2
+  gravity: 60
+  jetpackImpulse: 1
 --- !u!1 &1772520403
 GameObject:
   m_ObjectHideFlags: 0
