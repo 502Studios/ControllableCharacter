@@ -4,8 +4,9 @@ namespace net.fiveotwo.controllableCharacter
 {
     public class CharacterAttack : CharacterAction
     {
-        protected ControllerInputModule input;
-        protected CharacterAim characterAim;
+        private ControllerInputModule input;
+        private CharacterAim characterAim;
+        private Button attackInput;
 
         public override void Awake()
         {
@@ -15,7 +16,7 @@ namespace net.fiveotwo.controllableCharacter
 
         public override void Initialization()
         {
-            input = controllableCharacter.InputModule();
+            attackInput = controllableCharacter.GetInputModule().GetButton("attack");
         }
 
         public override void LateUpdateAction()
@@ -27,17 +28,17 @@ namespace net.fiveotwo.controllableCharacter
             Vector2 velocity = controllableCharacter.GetVelocity();
             Vector2 direction = characterAim.AimingDirection();
 
-            if (input.action1.IsPressed())
+            if (attackInput.IsPressed())
             {
 
             }
 
-            if (input.action1.WasPressed())
+            if (attackInput.WasPressed())
             {
 
             }
 
-            if (input.action1.WasReleased())
+            if (attackInput.WasReleased())
             {
 
             }

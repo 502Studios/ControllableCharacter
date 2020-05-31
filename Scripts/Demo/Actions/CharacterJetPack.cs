@@ -1,7 +1,7 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     public class CharacterJetPack : CharacterAction
     {
         [SerializeField]
@@ -16,7 +16,7 @@
         protected float jetpackImpulse;
         protected Vector2 velocity;
         protected float currentFuel;
-        protected ControllerInputModule input;
+        protected Button input;
         protected CharacterJump characterJump;
 
         public override void Awake()
@@ -27,7 +27,7 @@
 
         public override void Initialization()
         {
-            input = controllableCharacter.InputModule();
+            input = controllableCharacter.GetInputModule().GetButton("jump");
             currentFuel = fuel;
         }
 
@@ -46,7 +46,7 @@
             }
 
             bool jetpackActivable = characterJump != null && characterJump.Active() ? !characterJump.CanJump() : true;
-            if (input.action2.IsPressed() && jetpackActivable && currentFuel > 0)
+            if (input.IsPressed() && jetpackActivable && currentFuel > 0)
             {
                 JetPack();
                 float deltaTime = controllableCharacter.DeltaTime();

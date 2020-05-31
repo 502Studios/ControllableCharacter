@@ -27,7 +27,7 @@ public class CharacterAnimationController : CharacterAction
             spriteRenderer.flipX = characterAim.AimingDirection().x > 0 ? false : true;
         }
 
-        if (!controllableCharacter.CharacterStateMachine().GetCurrentState().Equals(CharacterState.jumping))
+        if (!controllableCharacter.GetStateMachine().GetCurrentState().Equals(CharacterState.jumping))
         {
             if (Mathf.Abs(controllableCharacter.GetVelocity().x) > 1f)
             {

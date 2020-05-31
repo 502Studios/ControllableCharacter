@@ -1,7 +1,7 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     public class CharacterMovement : CharacterAction
     {
         [SerializeField]
@@ -13,11 +13,11 @@
         protected Vector2 velocity;
         protected Vector2 normalizedSpeed;
         protected float smoothedMovementFactor;
-        protected ControllerInputModule input;
+        protected Axis2D input;
 
         public override void Initialization()
         {
-            input = controllableCharacter.InputModule();
+            input = controllableCharacter.GetInputModule().Get2DAxis("leftStick");
         }
 
         public override void UpdateAction()
@@ -27,7 +27,7 @@
                 return;
             }
 
-            normalizedSpeed.x = input.leftStick.Value().x;
+            normalizedSpeed.x = input.Value().x;
 
             normalizedSpeed = Vector2.ClampMagnitude(normalizedSpeed, 1);
             smoothedMovementFactor = controllableCharacter.IsGrounded() ? groundDamping : inAirDamping;

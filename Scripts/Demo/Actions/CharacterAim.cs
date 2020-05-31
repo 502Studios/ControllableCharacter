@@ -1,13 +1,13 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     public class CharacterAim : CharacterAction
     {
         [SerializeField]
         protected AimType aimType;
         [SerializeField]
-        protected AimAxis aimAxis;
+        protected string axisName;
         [SerializeField]
         protected Direction defaultDirection;
         [SerializeField]
@@ -15,7 +15,7 @@
         private Vector2 currentAimingDirection;
         private Vector2 newDirection;
         private Vector2 previousDirection;
-        protected ControllerInputModule input;
+        private Axis2D input;
 
         /*
             E = 0, 
@@ -55,13 +55,8 @@
         {
             TwoWay,
             FourWay,
-            EightWay
-        }
-
-        protected enum AimAxis
-        {
-            MoveAxis,
-            AimAxis
+            EightWay,
+            Unrestricted
         }
 
         protected enum Direction
@@ -72,7 +67,7 @@
 
         public override void Initialization()
         {
-            input = controllableCharacter.InputModule();
+            input = controllableCharacter.GetInputModule().Get2DAxis(axisName);
             currentAimingDirection = previousDirection = defaultDirection == Direction.Left ? Vector2.left : Vector2.right;
         }
 
@@ -83,14 +78,14 @@
                 return;
             }
 
-            newDirection = aimAxis == AimAxis.AimAxis ? input.rightStick.Value() : input.leftStick.Value();
+            newDirection = input.Value();
 
             if (newDirection != currentAimingDirection && newDirection != Vector2.zero)
             {
                 CalculateNewAimingAngle(newDirection);
             }
 
-            if (!canAimBelownWhileGrounded && controllableCharacter.CharacterStateMachine().Equals((int)CharacterState.grounded))
+            if (!canAimBelownWhileGrounded && controllableCharacter.GetStateMachine().Equals((int)CharacterState.grounded))
             {
                 currentAimingDirection = previousDirection;
             }
@@ -112,6 +107,7 @@
                     currentAimingDirection = Snap(direction, filter8WayDirections);
                     break;
                 default:
+                    currentAimingDirection = direction.normalized;
                     break;
             }
         }

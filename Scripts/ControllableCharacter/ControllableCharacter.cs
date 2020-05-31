@@ -1,9 +1,9 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using net.fiveotwo.characterController;
-    using System.Collections.Generic;
-    using UnityEngine;
+﻿using net.fiveotwo.characterController;
+using System.Collections.Generic;
+using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     [RequireComponent(typeof(Controller2D))]
     public class ControllableCharacter : MonoBehaviour
     {
@@ -41,6 +41,11 @@
                 action.LateUpdateAction();
             }
             Move(velocity);
+
+            foreach (CharacterAction action in characterActions)
+            {
+                action.AfterUpdateAction();
+            }
         }
 
         public void InitializeStates()
@@ -97,7 +102,7 @@
             this.controllerInputModule = controllerInputModule;
         }
 
-        public ControllerInputModule InputModule()
+        public ControllerInputModule GetInputModule()
         {
             return controllerInputModule;
         }
@@ -112,7 +117,7 @@
             return Time.deltaTime * deltaTimeModifier;
         }
 
-        public CharacterStateMachine CharacterStateMachine() {
+        public CharacterStateMachine GetStateMachine() {
             return characterStateMachine;
         }
 
