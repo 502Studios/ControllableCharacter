@@ -1,7 +1,7 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     [RequireComponent(typeof(ControllableCharacter))]
     public abstract class CharacterAction : MonoBehaviour
     {
@@ -30,6 +30,10 @@
         }
 
         public virtual void UpdateAction()
+        {
+        }
+
+        public virtual void AfterUpdateAction()
         {
         }
 

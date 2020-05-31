@@ -1,7 +1,7 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     public class CharacterJump : CharacterAction
     {
         [SerializeField]
@@ -16,11 +16,11 @@
         protected bool canJump;
         protected int lastFrame;
         protected Vector2 velocity;
-        protected ControllerInputModule input;
+        protected Button jumpInput;
 
         public override void Initialization()
         {
-            input = controllableCharacter.InputModule();
+            jumpInput = controllableCharacter.GetInputModule().GetButton("jump");
         }
 
         public override void LateUpdateAction()
@@ -35,7 +35,7 @@
                 jumpsLeft = 0;
                 lastFrame = Time.frameCount;
                 canJump = true;
-                controllableCharacter.CharacterStateMachine().SetState((int)CharacterState.grounded);
+                controllableCharacter.GetStateMachine().SetState((int)CharacterState.grounded);
             } else if (!controllableCharacter.IsGrounded())
             {
                 if (Time.frameCount - lastFrame > coyoteTime)
@@ -43,7 +43,7 @@
                     canJump = false;
                 }
             }
-            if (input.action2.WasPressed())
+            if (jumpInput.WasPressed())
             {
                 PerformJump();
             }
@@ -60,7 +60,7 @@
                 controllableCharacter.SetVelocity(velocity);
                 velocity.y = Mathf.Sqrt(2f * (jumpHeight) * gravity);
                 controllableCharacter.SetVelocity(velocity);
-                controllableCharacter.CharacterStateMachine().SetState((int)CharacterState.jumping);
+                controllableCharacter.GetStateMachine().SetState((int)CharacterState.jumping);
             }
         }
 

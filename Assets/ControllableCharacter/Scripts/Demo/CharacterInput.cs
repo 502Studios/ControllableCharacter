@@ -1,27 +1,30 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace net.fiveotwo.controllableCharacter
 {
     public class CharacterInput : ControllerInputModule
     {
-        private void Start()
+        public Axis2D movementAxis;
+        public override void ConfigureInputs()
         {
-            AnalogAxis horizontal = new AnalogAxis();
+            Axis horizontal = new Axis();
             horizontal.onAxisChange += HorizontalAxis;
-            AnalogAxis vertical = new AnalogAxis();
+            Axis vertical = new Axis();
             vertical.onAxisChange += VerticalAxis;
-            leftStick = new AnalogAxis2D(horizontal, vertical);
+            Axis2D leftStick = new Axis2D(horizontal, vertical);
+            AddInput("leftStick", leftStick);
 
-            action1 = new Button();
-            action1.onButtonDown += OnButtonDown;
-            action1.onButtonUp += OnButtonUp;
-            action1.onButtonPress += OnButtonPressed;
+            Button attack = new Button();
+            attack.onButtonDown += OnButtonDown;
+            attack.onButtonUp += OnButtonUp;
+            attack.onButtonPress += OnButtonPressed;
+            AddInput("attack", attack);
 
-            action2 = new Button();
-            action2.onButtonDown += () => Input.GetKeyDown(KeyCode.K);
-            action2.onButtonUp += () => Input.GetKeyUp(KeyCode.K);
-            action2.onButtonPress += () => Input.GetKey(KeyCode.K);
+            Button jump = new Button();
+            jump.onButtonDown += () => Input.GetKeyDown(KeyCode.K);
+            jump.onButtonUp += () => Input.GetKeyUp(KeyCode.K);
+            jump.onButtonPress += () => Input.GetKey(KeyCode.K);
+            AddInput("jump", jump);
         }
 
         private bool OnButtonDown() {

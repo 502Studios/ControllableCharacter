@@ -1,7 +1,7 @@
-﻿namespace net.fiveotwo.controllableCharacter
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace net.fiveotwo.controllableCharacter
+{
     public class CharacterGravity : CharacterAction
     {
         [SerializeField]
