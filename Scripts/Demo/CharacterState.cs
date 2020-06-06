@@ -1,8 +1,11 @@
-﻿public enum CharacterState
+﻿namespace net.fiveotwo.demo.controllableCharacter
 {
-    idle,
-    grounded,
-    jumping,
-    crouching,
-    airbourne
+    public enum CharacterState
+    {
+        idle,
+        grounded,
+        jumping,
+        crouching,
+        airbourne
+    }
 }

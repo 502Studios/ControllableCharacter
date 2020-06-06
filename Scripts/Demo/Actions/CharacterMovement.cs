@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using net.fiveotwo.controllableCharacter;
+using UnityEngine;
 
-namespace net.fiveotwo.controllableCharacter
+namespace net.fiveotwo.demo.controllableCharacter
 {
     public class CharacterMovement : CharacterAction
     {
@@ -20,7 +21,7 @@ namespace net.fiveotwo.controllableCharacter
             input = controllableCharacter.GetInputModule().Get2DAxis("leftStick");
         }
 
-        public override void UpdateAction()
+        private void Update()
         {
             if (!active)
             {
@@ -28,15 +29,17 @@ namespace net.fiveotwo.controllableCharacter
             }
 
             normalizedSpeed.x = input.Value().x;
-
+            velocity = controllableCharacter.GetVelocity();
             normalizedSpeed = Vector2.ClampMagnitude(normalizedSpeed, 1);
             smoothedMovementFactor = controllableCharacter.IsGrounded() ? groundDamping : inAirDamping;
-            velocity = controllableCharacter.GetVelocity();
             float deltaTime = controllableCharacter.DeltaTime();
             velocity.x = Mathf.Lerp(velocity.x, normalizedSpeed.x * moveSpeed, deltaTime * smoothedMovementFactor);
 
-            velocity.x = controllableCharacter.GetCollisionState().Left && velocity.x < 0 ? 0 : velocity.x;
-            velocity.x = controllableCharacter.GetCollisionState().Right && velocity.x > 0 ? 0 : velocity.x;
+            if (controllableCharacter.GetCollisionState().Left || controllableCharacter.GetCollisionState().Right)
+            {
+                velocity.x = 0;
+            }
+
             controllableCharacter.SetVelocity(velocity);
         }
     }
