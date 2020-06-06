@@ -41,5 +41,10 @@ namespace net.fiveotwo.controllableCharacter
         {
             return active;
         }
+
+        public void SetStatus(bool status)
+        {
+            active = status;
+        }
     }
 }

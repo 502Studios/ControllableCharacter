@@ -30,21 +30,34 @@ namespace net.fiveotwo.controllableCharacter
         {
             foreach (CharacterAction action in characterActions)
             {
-                action.EarlyUpdateAction();
+                if (action.Active())
+                {
+                    action.EarlyUpdateAction();
+                }
             }
             foreach (CharacterAction action in characterActions)
             {
-                action.UpdateAction();
+                if (action.Active())
+                {
+                    action.UpdateAction();
+                }
             }
             foreach (CharacterAction action in characterActions)
             {
-                action.LateUpdateAction();
+                if (action.Active())
+                {
+                    action.LateUpdateAction();
+                }
             }
+
             Move(velocity);
 
             foreach (CharacterAction action in characterActions)
             {
-                action.AfterUpdateAction();
+                if (action.Active())
+                {
+                    action.AfterUpdateAction();
+                }
             }
         }
 

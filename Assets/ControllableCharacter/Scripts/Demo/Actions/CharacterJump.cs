@@ -26,11 +26,6 @@ namespace net.fiveotwo.demo.controllableCharacter
 
         public override void LateUpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             if (controllableCharacter.IsGrounded())
             {
                 jumpsLeft = 0;

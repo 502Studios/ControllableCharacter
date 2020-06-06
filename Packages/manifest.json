@@ -44,8 +44,8 @@
   },
   "lock": {
     "net.fiveotwo.character-controller": {
-      "revision": "1.2.7",
-      "hash": "5c2b001b749034cc4ce5971422016092cb8b3c85"
+      "revision": "1.2.8",
+      "hash": "6669641fd207d38de5b44b842a06d36c4a0c0dd7"
     }
   }
 }

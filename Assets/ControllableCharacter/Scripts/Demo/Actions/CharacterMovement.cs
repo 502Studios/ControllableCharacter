@@ -21,13 +21,8 @@ namespace net.fiveotwo.demo.controllableCharacter
             input = controllableCharacter.GetInputModule().Get2DAxis("leftStick");
         }
 
-        private void Update()
+        public override void UpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             normalizedSpeed.x = input.Value().x;
             velocity = controllableCharacter.GetVelocity();
             normalizedSpeed = Vector2.ClampMagnitude(normalizedSpeed, 1);
