@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using net.fiveotwo.controllableCharacter;
+using UnityEngine;
 
-namespace net.fiveotwo.controllableCharacter
+namespace net.fiveotwo.demo.controllableCharacter
 {
     public class CharacterGravity : CharacterAction
     {
@@ -16,14 +17,7 @@ namespace net.fiveotwo.controllableCharacter
             }
 
             velocity = controllableCharacter.GetVelocity();
-            if (controllableCharacter.IsGrounded())
-            {
-                velocity.y = 0;
-                controllableCharacter.SetVelocity(velocity);
-                return;
-            }
-
-            velocity.y -= gravity * Time.deltaTime;
+            velocity.y -= gravity * controllableCharacter.DeltaTime();
             controllableCharacter.SetVelocity(velocity);
         }
     }

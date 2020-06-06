@@ -216,13 +216,12 @@ GameObject:
   - component: {fileID: 1470407638}
   - component: {fileID: 1470407634}
   - component: {fileID: 1470407633}
-  - component: {fileID: 1470407632}
   - component: {fileID: 1470407637}
+  - component: {fileID: 1470407632}
   - component: {fileID: 1470407636}
   - component: {fileID: 1470407635}
   - component: {fileID: 1470407639}
   - component: {fileID: 1470407640}
-  - component: {fileID: 1470407641}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -268,13 +267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2209e09cac724944845529628ac6bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinWidth: 0.01
+  skinWidth: 0.03
   minimumMoveDistance: 0.001
   solidMask:
     serializedVersion: 2
     m_Bits: 256
   manageSlopes: 0
-  maxSlopeAngle: 45
+  maxSlopeAngle: 36.4
   logCollisions: 0
 --- !u!61 &1470407634
 BoxCollider2D:
@@ -300,7 +299,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &1470407635
 MonoBehaviour:
@@ -433,24 +432,6 @@ MonoBehaviour:
   fuelRefillRate: 2
   gravity: 60
   jetpackImpulse: 1
---- !u!114 &1470407641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470407630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9daa0b918dc86248ac8ecc1b2e9556a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  priority: 0
-  active: 1
-  aimType: 0
-  axisName: leftStick
-  defaultDirection: 0
-  canAimBelownWhileGrounded: 1
 --- !u!1 &1772520403
 GameObject:
   m_ObjectHideFlags: 0
