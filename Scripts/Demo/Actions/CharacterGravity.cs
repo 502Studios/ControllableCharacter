@@ -11,11 +11,6 @@ namespace net.fiveotwo.demo.controllableCharacter
 
         public override void EarlyUpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             velocity = controllableCharacter.GetVelocity();
             velocity.y -= gravity * controllableCharacter.DeltaTime();
             controllableCharacter.SetVelocity(velocity);
