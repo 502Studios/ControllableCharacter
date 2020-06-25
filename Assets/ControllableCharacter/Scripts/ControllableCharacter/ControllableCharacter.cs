@@ -12,7 +12,7 @@ namespace net.fiveotwo.controllableCharacter
         private Vector2 velocity;
         private ControllerInputModule controllerInputModule;
         private CharacterStateMachine characterStateMachine;
-
+        private bool haltController;
         protected float deltaTimeModifier = 1f;
 
         public void Awake()
@@ -28,23 +28,41 @@ namespace net.fiveotwo.controllableCharacter
 
         void Update()
         {
+            if (haltController)
+            {
+                return;
+            }
+
             foreach (CharacterAction action in characterActions)
             {
-                action.EarlyUpdateAction();
+                if (action.Active())
+                {
+                    action.EarlyUpdateAction();
+                }
             }
             foreach (CharacterAction action in characterActions)
             {
-                action.UpdateAction();
+                if (action.Active())
+                {
+                    action.UpdateAction();
+                }
             }
             foreach (CharacterAction action in characterActions)
             {
-                action.LateUpdateAction();
+                if (action.Active())
+                {
+                    action.LateUpdateAction();
+                }
             }
+
             Move(velocity);
 
             foreach (CharacterAction action in characterActions)
             {
-                action.AfterUpdateAction();
+                if (action.Active())
+                {
+                    action.AfterUpdateAction();
+                }
             }
         }
 
@@ -117,8 +135,14 @@ namespace net.fiveotwo.controllableCharacter
             return Time.deltaTime * deltaTimeModifier;
         }
 
-        public CharacterStateMachine GetStateMachine() {
+        public CharacterStateMachine GetStateMachine()
+        {
             return characterStateMachine;
+        }
+
+        public void HaltController(bool value)
+        {
+            haltController = value;
         }
 
         #region collision events
