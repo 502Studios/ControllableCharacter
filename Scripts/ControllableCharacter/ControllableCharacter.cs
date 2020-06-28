@@ -7,18 +7,18 @@ namespace net.fiveotwo.controllableCharacter
     [RequireComponent(typeof(Controller2D))]
     public class ControllableCharacter : MonoBehaviour
     {
-        private List<CharacterAction> characterActions = new List<CharacterAction>();
-        private Controller2D characterController2D;
-        private Vector2 velocity;
-        private ControllerInputModule controllerInputModule;
-        private CharacterStateMachine characterStateMachine;
-        private bool haltController;
         protected float deltaTimeModifier = 1f;
+        private List<CharacterAction> _characterActions = new List<CharacterAction>();
+        private Controller2D _characterController2D;
+        private Vector2 _velocity;
+        private ControllerInputModule _controllerInputModule;
+        private CharacterStateMachine _characterStateMachine;
+        private bool _haltController;
 
         public void Awake()
         {
-            characterController2D = GetComponent<Controller2D>();
-            characterStateMachine = new CharacterStateMachine();
+            _characterController2D = GetComponent<Controller2D>();
+            _characterStateMachine = new CharacterStateMachine();
         }
 
         private void Start()
@@ -28,101 +28,103 @@ namespace net.fiveotwo.controllableCharacter
 
         void Update()
         {
-            if (haltController)
+            if (_haltController)
             {
                 return;
             }
 
-            foreach (CharacterAction action in characterActions)
+            for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (action.Active())
+                if (_characterActions[index].Active())
                 {
-                    action.EarlyUpdateAction();
-                }
-            }
-            foreach (CharacterAction action in characterActions)
-            {
-                if (action.Active())
-                {
-                    action.UpdateAction();
-                }
-            }
-            foreach (CharacterAction action in characterActions)
-            {
-                if (action.Active())
-                {
-                    action.LateUpdateAction();
+                    _characterActions[index].EarlyUpdateAction();
                 }
             }
 
-            Move(velocity);
-
-            foreach (CharacterAction action in characterActions)
+            for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (action.Active())
+                if (_characterActions[index].Active())
                 {
-                    action.AfterUpdateAction();
+                    _characterActions[index].UpdateAction();
+                }
+            }
+
+            for (int index = 0; index < _characterActions.Count; index++)
+            {
+                if (_characterActions[index].Active())
+                {
+                    _characterActions[index].LateUpdateAction();
+                }
+            }
+
+            Move(_velocity);
+
+            for (int index = 0; index < _characterActions.Count; index++)
+            {
+                if (_characterActions[index].Active())
+                {
+                    _characterActions[index].AfterUpdateAction();
                 }
             }
         }
 
         public void InitializeStates()
         {
-            foreach (CharacterAction action in characterActions)
+            for(int index = 0; index < _characterActions.Count; index++)
             {
-                action.Initialization();
+                _characterActions[index].Initialization();
             }
         }
 
         public bool IsGrounded()
         {
-            return characterController2D.CollisionState().Below;
+            return _characterController2D.CollisionState().Below;
         }
 
         public CollisionState GetCollisionState()
         {
-            return characterController2D.CollisionState();
+            return _characterController2D.CollisionState();
         }
 
         public Vector2 GetVelocity()
         {
-            return velocity;
+            return _velocity;
         }
 
         public void SetVelocity(Vector2 velocity)
         {
-            this.velocity = velocity;
+            this._velocity = velocity;
         }
 
         public void Move(Vector3 deltaMovement)
         {
-            characterController2D.Move(deltaMovement * DeltaTime());
+            _characterController2D.Move(deltaMovement * DeltaTime());
         }
 
         public Controller2D CharacterController2D()
         {
-            return characterController2D;
+            return _characterController2D;
         }
 
         public void AddAction(CharacterAction action)
         {
-            characterActions.Add(action);
-            characterActions.Sort((x, y) => x.priority.CompareTo(y.priority));
+            _characterActions.Add(action);
+            _characterActions.Sort((x, y) => x.priority.CompareTo(y.priority));
         }
 
         public void RemoveAction(CharacterAction action)
         {
-            characterActions.Remove(action);
+            _characterActions.Remove(action);
         }
 
         public void SetInputModule(ControllerInputModule controllerInputModule)
         {
-            this.controllerInputModule = controllerInputModule;
+            this._controllerInputModule = controllerInputModule;
         }
 
         public ControllerInputModule GetInputModule()
         {
-            return controllerInputModule;
+            return _controllerInputModule;
         }
 
         public void ModifyDeltaTime(float deltaTimeModifier)
@@ -137,43 +139,43 @@ namespace net.fiveotwo.controllableCharacter
 
         public CharacterStateMachine GetStateMachine()
         {
-            return characterStateMachine;
+            return _characterStateMachine;
         }
 
         public void HaltController(bool value)
         {
-            haltController = value;
+            _haltController = value;
         }
 
         #region collision events
         public void AddOnControllerCollidedEvent(Controller2D.CollisionEvent action)
         {
-            characterController2D.onCollisionEvent += action;
+            _characterController2D.onCollisionEvent += action;
         }
 
         public void RemoveOnControllerCollidedEvent(Controller2D.CollisionEvent action)
         {
-            characterController2D.onCollisionEvent -= action;
+            _characterController2D.onCollisionEvent -= action;
         }
 
         public void AddOnControllerTriggerEnterEvent(Controller2D.TriggerEvent action)
         {
-            characterController2D.onTriggerEnter += action;
+            _characterController2D.onTriggerEnter += action;
         }
 
         public void RemoveOnControllerTriggerEnterEvent(Controller2D.TriggerEvent action)
         {
-            characterController2D.onTriggerEnter -= action;
+            _characterController2D.onTriggerEnter -= action;
         }
 
         public void AddOnControllerTriggerExitEvent(Controller2D.TriggerEvent action)
         {
-            characterController2D.onTriggerExit += action;
+            _characterController2D.onTriggerExit += action;
         }
 
         public void RemoveOnControllerTriggerExitEvent(Controller2D.TriggerEvent action)
         {
-            characterController2D.onTriggerExit -= action;
+            _characterController2D.onTriggerExit -= action;
         }
         #endregion
     }
