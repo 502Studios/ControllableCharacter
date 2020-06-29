@@ -35,7 +35,7 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                var characterAction = _characterActions[index];
+                CharacterAction characterAction = _characterActions[index];
                 if (characterAction.Active())
                 {
                     characterAction.EarlyUpdateAction();
@@ -44,7 +44,7 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                var characterAction = _characterActions[index];
+                CharacterAction characterAction = _characterActions[index];
                 if (characterAction.Active())
                 {
                     characterAction.UpdateAction();
@@ -53,7 +53,7 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                var characterAction = _characterActions[index];
+                CharacterAction characterAction = _characterActions[index];
                 if (characterAction.Active())
                 {
                     characterAction.LateUpdateAction();
@@ -64,7 +64,7 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                var characterAction = _characterActions[index];
+                CharacterAction characterAction = _characterActions[index];
                 if (characterAction.Active())
                 {
                     characterAction.AfterUpdateAction();
