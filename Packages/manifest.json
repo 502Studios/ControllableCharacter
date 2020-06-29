@@ -9,7 +9,7 @@
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.12",
     "com.unity.ugui": "1.0.0",
-    "net.fiveotwo.character-controller": "https://github.com/502Studios/Controller2D.git#1.2.6",
+    "net.fiveotwo.character-controller": "https://github.com/502Studios/Controller2D.git#1.2.9",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -44,8 +44,8 @@
   },
   "lock": {
     "net.fiveotwo.character-controller": {
-      "revision": "1.2.6",
-      "hash": "1d22dba6a2cb1cb89671d7ada475aa40c4a4e13f"
+      "revision": "1.2.9",
+      "hash": "b2f561d854aaf4fe6db55b1fc62e41b55e77960e"
     }
   }
 }
