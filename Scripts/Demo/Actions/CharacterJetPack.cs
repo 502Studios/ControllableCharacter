@@ -33,11 +33,6 @@ namespace net.fiveotwo.controllableCharacter
 
         public override void UpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             if (controllableCharacter.IsGrounded())
             {
                 float deltaTime = controllableCharacter.DeltaTime();

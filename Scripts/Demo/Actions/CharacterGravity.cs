@@ -10,20 +10,18 @@ namespace net.fiveotwo.controllableCharacter
 
         public override void EarlyUpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             velocity = controllableCharacter.GetVelocity();
             if (controllableCharacter.IsGrounded())
             {
                 velocity.y = 0;
-                controllableCharacter.SetVelocity(velocity);
-                return;
             }
+            controllableCharacter.SetVelocity(velocity);
+        }
 
-            velocity.y -= gravity * Time.deltaTime;
+        public override void UpdateAction()
+        {
+            velocity = controllableCharacter.GetVelocity();
+            velocity.y -= gravity * controllableCharacter.DeltaTime();
             controllableCharacter.SetVelocity(velocity);
         }
     }
