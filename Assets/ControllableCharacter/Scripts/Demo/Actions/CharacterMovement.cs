@@ -22,11 +22,6 @@ namespace net.fiveotwo.controllableCharacter
 
         public override void UpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             normalizedSpeed.x = input.Value().x;
 
             normalizedSpeed = Vector2.ClampMagnitude(normalizedSpeed, 1);
