@@ -35,28 +35,28 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                CharacterAction characterAction = _characterActions[index];
-                if (characterAction.Active())
+                CharacterAction action = _characterActions[index];
+                if (action.Active())
                 {
-                    characterAction.EarlyUpdateAction();
+                    action.EarlyUpdateAction();
                 }
             }
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                CharacterAction characterAction = _characterActions[index];
-                if (characterAction.Active())
+                CharacterAction action = _characterActions[index];
+                if (action.Active())
                 {
-                    characterAction.UpdateAction();
+                    action.UpdateAction();
                 }
             }
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                CharacterAction characterAction = _characterActions[index];
-                if (characterAction.Active())
+                CharacterAction action = _characterActions[index];
+                if (action.Active())
                 {
-                    characterAction.LateUpdateAction();
+                    action.LateUpdateAction();
                 }
             }
 
@@ -64,10 +64,10 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                CharacterAction characterAction = _characterActions[index];
-                if (characterAction.Active())
+                CharacterAction action = _characterActions[index];
+                if (action.Active())
                 {
-                    characterAction.AfterUpdateAction();
+                    action.AfterUpdateAction();
                 }
             }
         }
