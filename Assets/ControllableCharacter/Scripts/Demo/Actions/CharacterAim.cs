@@ -73,11 +73,6 @@ namespace net.fiveotwo.controllableCharacter
 
         public override void UpdateAction()
         {
-            if (!active)
-            {
-                return;
-            }
-
             newDirection = input.Value();
 
             if (newDirection != currentAimingDirection && newDirection != Vector2.zero)
