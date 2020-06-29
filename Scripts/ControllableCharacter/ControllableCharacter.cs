@@ -35,25 +35,28 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (_characterActions[index].Active())
+                var characterAction = _characterActions[index];
+                if (characterAction.Active())
                 {
-                    _characterActions[index].EarlyUpdateAction();
+                    characterAction.EarlyUpdateAction();
                 }
             }
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (_characterActions[index].Active())
+                var characterAction = _characterActions[index];
+                if (characterAction.Active())
                 {
-                    _characterActions[index].UpdateAction();
+                    characterAction.UpdateAction();
                 }
             }
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (_characterActions[index].Active())
+                var characterAction = _characterActions[index];
+                if (characterAction.Active())
                 {
-                    _characterActions[index].LateUpdateAction();
+                    characterAction.LateUpdateAction();
                 }
             }
 
@@ -61,9 +64,10 @@ namespace net.fiveotwo.controllableCharacter
 
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                if (_characterActions[index].Active())
+                var characterAction = _characterActions[index];
+                if (characterAction.Active())
                 {
-                    _characterActions[index].AfterUpdateAction();
+                    characterAction.AfterUpdateAction();
                 }
             }
         }
