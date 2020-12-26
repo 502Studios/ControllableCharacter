@@ -15,7 +15,7 @@ public class CharacterAnimationController : CharacterAction
         characterAim = GetComponent<CharacterAim>();
     }
 
-    public override void UpdateAction()
+    public override void UpdateAction(float deltaTime)
     {
         if (!active)
         {

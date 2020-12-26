@@ -8,7 +8,7 @@ namespace net.fiveotwo.controllableCharacter
         protected float gravity;
         protected Vector2 velocity;
 
-        public override void EarlyUpdateAction()
+        public override void EarlyUpdateAction(float deltaTime)
         {
             velocity = controllableCharacter.GetVelocity();
             if (controllableCharacter.IsGrounded())
@@ -18,10 +18,10 @@ namespace net.fiveotwo.controllableCharacter
             controllableCharacter.SetVelocity(velocity);
         }
 
-        public override void UpdateAction()
+        public override void UpdateAction(float deltaTime)
         {
             velocity = controllableCharacter.GetVelocity();
-            velocity.y -= gravity * controllableCharacter.DeltaTime();
+            velocity.y -= gravity * deltaTime;
             controllableCharacter.SetVelocity(velocity);
         }
     }

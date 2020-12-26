@@ -20,14 +20,13 @@ namespace net.fiveotwo.controllableCharacter
             input = controllableCharacter.GetInputModule().Get2DAxis("leftStick");
         }
 
-        public override void UpdateAction()
+        public override void UpdateAction(float deltaTime)
         {
             normalizedSpeed.x = input.Value().x;
 
             normalizedSpeed = Vector2.ClampMagnitude(normalizedSpeed, 1);
             smoothedMovementFactor = controllableCharacter.IsGrounded() ? groundDamping : inAirDamping;
             velocity = controllableCharacter.GetVelocity();
-            float deltaTime = controllableCharacter.DeltaTime();
             velocity.x = Mathf.Lerp(velocity.x, normalizedSpeed.x * moveSpeed, deltaTime * smoothedMovementFactor);
 
             velocity.x = controllableCharacter.GetCollisionState().Left && velocity.x < 0 ? 0 : velocity.x;
