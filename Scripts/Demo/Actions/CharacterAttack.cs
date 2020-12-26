@@ -19,7 +19,7 @@ namespace net.fiveotwo.controllableCharacter
             attackInput = controllableCharacter.GetInputModule().GetButton("attack");
         }
 
-        public override void LateUpdateAction()
+        public override void LateUpdateAction(float deltaTime)
         {
             if (!active)
             {

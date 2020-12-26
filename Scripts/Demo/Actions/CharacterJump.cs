@@ -23,7 +23,7 @@ namespace net.fiveotwo.controllableCharacter
             jumpInput = controllableCharacter.GetInputModule().GetButton("jump");
         }
 
-        public override void LateUpdateAction()
+        public override void LateUpdateAction(float deltaTime)
         {
             if (controllableCharacter.IsGrounded())
             {

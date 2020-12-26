@@ -7,6 +7,8 @@ namespace net.fiveotwo.controllableCharacter
     [RequireComponent(typeof(Controller2D))]
     public class ControllableCharacter : MonoBehaviour
     {
+        [SerializeField]
+        private bool _useUnescaledDeltaTime;
         protected float deltaTimeModifier = 1f;
         private List<CharacterAction> _characterActions = new List<CharacterAction>();
         private Controller2D _characterController2D;
@@ -14,6 +16,7 @@ namespace net.fiveotwo.controllableCharacter
         private ControllerInputModule _controllerInputModule;
         private CharacterStateMachine _characterStateMachine;
         private bool _haltController;
+        private float _currentDelta;
 
         public void Awake()
         {
@@ -38,7 +41,7 @@ namespace net.fiveotwo.controllableCharacter
                 CharacterAction action = _characterActions[index];
                 if (action.Active())
                 {
-                    action.EarlyUpdateAction();
+                    action.EarlyUpdateAction(DeltaTime());
                 }
             }
 
@@ -47,7 +50,7 @@ namespace net.fiveotwo.controllableCharacter
                 CharacterAction action = _characterActions[index];
                 if (action.Active())
                 {
-                    action.UpdateAction();
+                    action.UpdateAction(DeltaTime());
                 }
             }
 
@@ -56,7 +59,7 @@ namespace net.fiveotwo.controllableCharacter
                 CharacterAction action = _characterActions[index];
                 if (action.Active())
                 {
-                    action.LateUpdateAction();
+                    action.LateUpdateAction(DeltaTime());
                 }
             }
 
@@ -67,7 +70,7 @@ namespace net.fiveotwo.controllableCharacter
                 CharacterAction action = _characterActions[index];
                 if (action.Active())
                 {
-                    action.AfterUpdateAction();
+                    action.AfterUpdateAction(DeltaTime());
                 }
             }
         }
@@ -123,7 +126,7 @@ namespace net.fiveotwo.controllableCharacter
 
         public void SetInputModule(ControllerInputModule controllerInputModule)
         {
-            this._controllerInputModule = controllerInputModule;
+            _controllerInputModule = controllerInputModule;
         }
 
         public ControllerInputModule GetInputModule()
@@ -138,7 +141,13 @@ namespace net.fiveotwo.controllableCharacter
 
         public float DeltaTime()
         {
-            return Time.deltaTime * deltaTimeModifier;
+            _currentDelta = _useUnescaledDeltaTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            return _currentDelta * deltaTimeModifier;
+        }
+
+        public void SetUnscaledDeltaTime(bool value)
+        { 
+            _useUnescaledDeltaTime = value;
         }
 
         public CharacterStateMachine GetStateMachine()

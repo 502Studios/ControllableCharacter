@@ -71,7 +71,7 @@ namespace net.fiveotwo.controllableCharacter
             currentAimingDirection = previousDirection = defaultDirection == Direction.Left ? Vector2.left : Vector2.right;
         }
 
-        public override void UpdateAction()
+        public override void UpdateAction(float deltaTime)
         {
             newDirection = input.Value();
 

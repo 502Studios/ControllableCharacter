@@ -21,19 +21,19 @@ namespace net.fiveotwo.controllableCharacter
         {
         }
 
-        public virtual void EarlyUpdateAction()
+        public virtual void EarlyUpdateAction(float deltaTime)
         {
         }
 
-        public virtual void LateUpdateAction()
+        public virtual void LateUpdateAction(float deltaTime)
         {
         }
 
-        public virtual void UpdateAction()
+        public virtual void UpdateAction(float deltaTime)
         {
         }
 
-        public virtual void AfterUpdateAction()
+        public virtual void AfterUpdateAction(float deltaTime)
         {
         }
 

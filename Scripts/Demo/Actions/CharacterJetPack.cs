@@ -31,11 +31,10 @@ namespace net.fiveotwo.controllableCharacter
             currentFuel = fuel;
         }
 
-        public override void UpdateAction()
+        public override void UpdateAction(float deltaTime)
         {
             if (controllableCharacter.IsGrounded())
             {
-                float deltaTime = controllableCharacter.DeltaTime();
                 currentFuel = Mathf.MoveTowards(currentFuel, fuel, deltaTime * fuelRefillRate);
                 return;
             }
@@ -44,7 +43,6 @@ namespace net.fiveotwo.controllableCharacter
             if (input.IsPressed() && jetpackActivable && currentFuel > 0)
             {
                 JetPack();
-                float deltaTime = controllableCharacter.DeltaTime();
                 currentFuel = Mathf.MoveTowards(currentFuel, 0, deltaTime * fuelDepletionRate);
             }
         }
