@@ -37,7 +37,7 @@ namespace net.fiveotwo.controllableCharacter
         {
         }
 
-        public virtual void Reset()
+        public virtual void ResetAction()
         { 
         }
 

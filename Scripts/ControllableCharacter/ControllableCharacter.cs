@@ -128,7 +128,7 @@ namespace net.fiveotwo.controllableCharacter
         {
             for (int index = 0; index < _characterActions.Count; index++)
             {
-                _characterActions[index].Reset();
+                _characterActions[index].ResetAction();
             }
         }
 
