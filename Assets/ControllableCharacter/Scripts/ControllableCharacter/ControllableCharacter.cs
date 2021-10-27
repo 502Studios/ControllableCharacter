@@ -124,6 +124,14 @@ namespace net.fiveotwo.controllableCharacter
             _characterActions.Remove(action);
         }
 
+        public void ResetActions()
+        {
+            for (int index = 0; index < _characterActions.Count; index++)
+            {
+                _characterActions[index].ResetAction();
+            }
+        }
+
         public void SetInputModule(ControllerInputModule controllerInputModule)
         {
             _controllerInputModule = controllerInputModule;

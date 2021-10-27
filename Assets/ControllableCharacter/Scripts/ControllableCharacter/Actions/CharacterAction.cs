@@ -37,6 +37,10 @@ namespace net.fiveotwo.controllableCharacter
         {
         }
 
+        public virtual void ResetAction()
+        { 
+        }
+
         public bool Active()
         {
             return active;
